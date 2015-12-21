@@ -48,7 +48,7 @@ public class CommonUtils {
 	 * @throws ParseException
 	 */
 	@SuppressWarnings("unused")
-	public static List<LogResult> result_1(List<String> subTimes) throws ParseException {
+	public static List<LogResult> result(List<String> subTimes) throws ParseException {
 		//排序
 		Collections.sort(subTimes, new Comparator<String>() {
 			public int compare(String o1, String o2) {
@@ -101,37 +101,6 @@ public class CommonUtils {
 			System.out.println(logResults.get(i).toString());
 		}
 		return null;
-	}
-	
-	/**
-	 * 返回结果
-	 * 
-	 * @param subTimes
-	 * @return
-	 * @throws ParseException
-	 */
-	public static List<LogResult> result(List<String> subTimes)
-			throws ParseException {
-		System.out.println(subTimes.size());
-		Collections.sort(subTimes);
-		System.out.println(subTimes);
-		if (subTimes != null && subTimes.size() > 0) {
-			// 从0个元素开始循环，每次取出来后和他后面一个做比较
-			for (int i = 0; i < subTimes.size(); i++) {
-				String subTime_1 = subTimes.get(i);
-				// 当i取到最后一个的时候就结束循环 否则会抛出异常
-				if (i == subTimes.size() - 1) {
-					break;
-				}
-				String subTime_2 = subTimes.get(i + 1);
-				// 是否同一天
-				boolean flag = isSameDay(subTime_1, subTime_2);
-				System.out.println(flag);
-			}
-		}
-		// 分析开始时间，结束时间，总得毫秒数
-		return null;
-
 	}
 
 	/**
