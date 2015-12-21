@@ -94,26 +94,14 @@ public class CommonUtils {
 			logResults.add(logResult);
 		}
 		for (int i = 0; i < logResults.size(); i++) {
+			String startTime = logResults.get(i).getStartTime();
+			String endTime = logResults.get(i).getEndTime();
+			long count = getCount(startTime,endTime);
+			logResults.get(i).setStayLongTime(count);
 			System.out.println(logResults.get(i).toString());
 		}
 		return null;
 	}
-	
-	 private static String maxEndTime(String string, String string2) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-		
-		return null;
-	}
-
-	// 求两个数较小者，返回开始时间(i-1,i)
-	 public static String minStartTime(Date startTime,Date endTime,int i) {
-	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	  i --;
-	  if (i == 1){
-		  return minStartTime(startTime,endTime, i);
-	  }
-	  return endTime.getTime() - startTime.getTime() > 30*60*1000 ?  sdf.format(endTime) :  sdf.format(startTime) ;
-	 }
 	
 	/**
 	 * 返回结果
