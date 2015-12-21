@@ -1,0 +1,57 @@
+package com.mw.log.demo;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class LogTest {
+	/**
+	 * 读取文件
+	 *
+	 * @param readPath
+	 *            文件路径
+	 * @return
+	 */
+	public static List<String> read(String readPath) {
+		List<String> subTimes = new ArrayList<String>();
+		try {
+			File f = new File(readPath);
+			if (f.isFile() && f.exists()) {
+				InputStreamReader read = new InputStreamReader(new FileInputStream(f), "UTF-8");
+				BufferedReader reader = new BufferedReader(read);
+				String line = "";
+				while ((line = reader.readLine()) != null) {
+					String subTime = CommonUtils.subTime(line);
+					subTimes.add(subTime);
+				}
+				read.close();
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return subTimes;
+	}
+
+	public static void main(String[] args) throws ParseException {
+		String readPath = "file/log.txt";
+		System.out.println("begin!!!");
+		//得到时间的集合
+		List<String> subTimes = read(readPath);
+		//对时间进行排序
+		//截取时间，分开独立访问
+		
+		CommonUtils.result_1(subTimes);
+		System.out.println("end!!!");
+	}
+}
